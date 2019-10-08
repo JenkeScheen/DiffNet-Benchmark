@@ -9,7 +9,7 @@
 
 - To extract CPU usage run monitor_system.sh in the background.
 
-
+Benchmarking is run on a 20-core Intel(R) Core(TM) i9-7900X CPU @ 3.30GHz
 
 
 
