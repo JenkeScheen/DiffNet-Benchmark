@@ -1,0 +1,14 @@
+druglike: similar structures to rivastigmine were generated using the pubchem tool similar-molecule search which is based on tanimoto FP (n=326, https://pubchem.ncbi.nlm.nih.gov/#query=CID77991%20structure&tab=similarity)
+
+fragment: equal procedure as above but then starting from benzene (n=958)(https://pubchem.ncbi.nlm.nih.gov/#query=CID241%20structure&tab=similarity).
+
+molecule smiles were generated using pubchempy as an SQL handler.
+
+
+
+first, run smi_to_mol.py to generate smi files in both folders
+then, run for f in *.sdf; do fkcombu -T $f -R largest_mol -osdfT fkcombu/$f; done
+(in each folder)
+then use obabel to convert to mol2:
+for f in *.sdf; do name=$(basename $f .sdf); obabel -isdf $f -O mol2/$name.mol2; done
+then run make_mol_dir_chunks.py to divide the mol2 files into chunk folders of increasing size, randomly sampled
