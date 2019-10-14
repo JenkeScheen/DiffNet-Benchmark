@@ -39,6 +39,6 @@ for path in whole_paths:
 	elapsed = (end - start)
 	print("Took", str(elapsed), "seconds to generate a graph for", str(i), "nodes.")
 	row = str(i)+","+str(elapsed)+"\n"
-	with open("output/lomap_fragment_2.csv", "a") as myfile:
+	with open("output/lomap_fragment_1.csv", "a") as myfile:
 		myfile.write(row)
 	i +=1

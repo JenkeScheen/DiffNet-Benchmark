@@ -4,7 +4,12 @@ from rdkit.Chem import AllChem, Descriptors, rdMolAlign, rdDepictor, rdmolfiles,
 
 import csv
 
-files = [["drug-like.smi", "druglike"],["fragments.smi", "fragments"]]
+files = [
+		#["drug-like_light.smi", "druglike_light"],
+		["drug-like_heavy.smi", "druglike_heavy"],
+		["bulky.smi", "bulky"],
+		#["fragments.smi", "fragments"]
+		]
 
 
 for moltype in files:
@@ -22,6 +27,7 @@ for moltype in files:
 				AllChem.Compute2DCoords(mol)
 
 				num_atoms = mol.GetNumAtoms()
+				print(num_atoms)
 				mols.append([mol, num_atoms])
 			except:
 				pass

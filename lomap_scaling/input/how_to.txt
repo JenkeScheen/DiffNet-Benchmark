@@ -1,14 +1,29 @@
-druglike: similar structures to rivastigmine were generated using the pubchem tool similar-molecule search which is based on tanimoto FP (n=326, https://pubchem.ncbi.nlm.nih.gov/#query=CID77991%20structure&tab=similarity)
+druglike_light: similar structures to rivastigmine were generated using the pubchem tool similar-molecule search which is based on tanimoto FP (90% similarity, n=326, https://pubchem.ncbi.nlm.nih.gov/#query=CID77991%20structure&tab=similarity)
 
-fragment: equal procedure as above but then starting from benzene (n=958)(https://pubchem.ncbi.nlm.nih.gov/#query=CID241%20structure&tab=similarity).
+druglike_heavy: similar structures using the same technique as above but then with a 75% similarity search and filtering the compounds to be 400-700 MW (n=409, ref = a renin inhibitor)
+https://pubchem.ncbi.nlm.nih.gov/#query=CID25242438%20structure&tab=similarity&similaritythreshold=75&mw_gte=400&sort=mw&page=1
+
+bulky: 65%, 600-900 MW, 
+https://pubchem.ncbi.nlm.nih.gov/#query=CID89206234%20structure&tab=similarity&similaritythreshold=65&mw_gte=600
+
+fragment: equal procedure as druglike_light but then starting from benzene (n=958)(https://pubchem.ncbi.nlm.nih.gov/#query=CID241%20structure&tab=similarity).
 
 molecule smiles were generated using pubchempy as an SQL handler.
 
 
 
-first, run smi_to_mol.py to generate smi files in both folders
+first, run process_datasets.py to generate smi files in both folders
+run smi_to_mol.py to generate sdf files using rdkit
+
+then run make_mol_dir_chunks.py to divide the sdf files into chunk folders of increasing size, randomly sampled
+
+remove chunk folders where n 0 or 1, run for f in */chunks/*; do count=$(ls $f | wc -l); if [ "$count" -lt 2 ]; then rm -rf $f; fi; done
+
 then, run for f in *.sdf; do fkcombu -T $f -R largest_mol -osdfT fkcombu/$f; done
 (in each folder)
+
+
 then use obabel to convert to mol2:
-for f in *.sdf; do name=$(basename $f .sdf); obabel -isdf $f -O mol2/$name.mol2; done
-then run make_mol_dir_chunks.py to divide the mol2 files into chunk folders of increasing size, randomly sampled
+#in each fkcombu folder, run for f in *.sdf; do name=$(basename $f .sdf); obabel -isdf $f -O ../mol2/$name.mol2 -h; done
+
+check molecule alignments to be sure!
