@@ -11,7 +11,11 @@
 
 Benchmarking is run on a 20-core Intel(R) Core(TM) i9-7900X CPU @ 3.30GHz
 
+## Results:
 
+When looping DiffNet over covariance matrices increasing in size, the program crashes at 50 < m < 80; most of the times the crash will cause either a workstation reboot or python to stop responding, but sometimes python crashes with a memory error (*diffnet_MemError.err*). 
+
+The memory error shows that there is some overly large matrix called. For a plot of the parameters versus m, see *diffnet_scaling/output/GsMatrix_plot.png*.
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 
