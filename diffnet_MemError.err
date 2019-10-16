@@ -1,0 +1,15 @@
+Terminated (maximum number of iterations reached).
+Traceback (most recent call last):
+ File "diffnet_loop_benchmark.py", line 71, in <module>
+   results = dn.optimize( sij, optimalities=[ 'D', 'A', 'Etree'] )
+ File "/home/ppxasjsm/Projects/People/Jenke/diffnet_scaling/diffnet.py", line 469, in optimize
+   nij = np.array( OPTIMIZERS[o]( sij))
+ File "/home/ppxasjsm/Projects/People/Jenke/diffnet_scaling/diffnet.py", line 284, in A_optimize
+   sol = cvxopt.solvers.sdp( c, G0, h0, Gs, hs, A, b)
+ File "/home/ppxasjsm/miniconda3/envs/DiffNet2/lib/python2.7/site-packages/cvxopt/coneprog.py", line 4126, in sdp
+   sol = conelp(c, G, h, dims, A = A, b = b, primalstart = ps, dualstart = ds, kktsolver = kktsolver, options = options)
+ File "/home/ppxasjsm/miniconda3/envs/DiffNet2/lib/python2.7/site-packages/cvxopt/coneprog.py", line 579, in conelp
+   factor = misc.kkt_qr(G, dims, A)
+ File "/home/ppxasjsm/miniconda3/envs/DiffNet2/lib/python2.7/site-packages/cvxopt/misc.py", line 1608, in kkt_qr
+   Gs = matrix(0.0, (cdim, n))
+MemoryError
