@@ -3,15 +3,15 @@ from matplotlib import pyplot as plt
 import networkx as nx
 import numpy as np
 from scipy import linalg
-from cvxopt import matrix
+from cvxopt import matrix, solvers
 import examples as eg
 import graph as gph
 import sys
 import diffnet as dn
 import time
+import mosek
 
-
-## these are the matrices we have to imitate:
+# # these are the matrices we have to imitate:
 # nheavy = dict(A1=7, A2=6, B1=9, B2=6, C1=10, C2=10)
 # sCOX2 = np.diag( [nheavy['A1'] + nheavy['B1'] + nheavy['C1'],
 #                   nheavy['A1'] + nheavy['B1'] + nheavy['C2'],
@@ -29,7 +29,6 @@ import time
 #                   [ 2,  1, 17, 16,  1,  0, 17, 16],
 #                   [16, 17,  1,  2, 16, 17,  0,  1],
 #                   [17, 16,  2,  1, 17, 16,  1,  0]], dtype=float)
-
 
 
 def random_sym_matrix(n):
@@ -52,6 +51,8 @@ def random_sym_matrix(n):
 
 
 # with increasing sizes of n, generate fictive variance matrices and record diffnet runtimes.
+solvers.options['show_progress'] = False
+
 for n in np.arange(8, 5000, 1):
 	start = time.time()
 	# these are the ways we imitate the matrices:
@@ -70,14 +71,14 @@ for n in np.arange(8, 5000, 1):
 	# now run the optimiser:
 	results = dn.optimize( sij, optimalities=[ 'D', 'A', 'Etree'] )
 
-	print "#############################"
+
 	print "Finished computing for", n, "nodes."
 
 	# record elapsed time and append to file:
 	end = time.time()
 	elapsed = (end - start)
 	row = str(n)+","+str(elapsed)+"\n"
-	with open("output/diffnet_5.csv", "a") as myfile:
+	with open("output/diffnet_runtime.csv", "a") as myfile:
 	                myfile.write(row)
 
 
