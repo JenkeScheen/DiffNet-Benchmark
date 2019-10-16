@@ -16,4 +16,5 @@ sns.lineplot(x= "Nodes", y= "cdim", data=df, ax=axes[1])
 sns.lineplot(x= "Nodes", y= "n", data=df, ax=axes[2])
 
 plt.tight_layout()
+plt.savefig("GsMatrix_plot.png", dpi=300)
 plt.show()
