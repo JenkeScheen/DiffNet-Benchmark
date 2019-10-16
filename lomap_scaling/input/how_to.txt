@@ -19,8 +19,8 @@ then run make_mol_dir_chunks.py to divide the sdf files into chunk folders of in
 
 remove chunk folders where n 0 or 1, run for f in */chunks/*; do count=$(ls $f | wc -l); if [ "$count" -lt 2 ]; then rm -rf $f; fi; done
 
-then, run for f in *.sdf; do fkcombu -T $f -R largest_mol -osdfT fkcombu/$f; done
-(in each folder)
+for f in *; do cd $f; if [ ! -d "fkcombu" ]; then mkdir fkcombu; largest_mol=$(find . -type f | xargs ls -1S | head -n 1); for g in *.sdf; do fkcombu -T $g -R $largest_mol -osdfT fkcombu/$g; done; fi; cd ../; done | wc -l
+(in each chunk folder)
 
 
 then use obabel to convert to mol2:

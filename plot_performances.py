@@ -3,39 +3,29 @@ import matplotlib.pyplot as plt
 import pandas as pd 
 import numpy as np 
 
-diffnet_run1 = pd.read_csv("output/diffnet_1.csv", names=["nodes", "time"])
+diffnet_run1 = pd.read_csv("diffnet_scaling/output/diffnet_runtime.csv", names=["nodes", "time"])
 diffnet_run1["Method"] = "DiffNet"
-diffnet_run2 = pd.read_csv("output/diffnet_2.csv", names=["nodes", "time"])
-diffnet_run2["Method"] = "DiffNet"
-diffnet_run3 = pd.read_csv("output/diffnet_3.csv", names=["nodes", "time"])
-diffnet_run3["Method"] = "DiffNet"
 
-lomap_druglike_run1 = pd.read_csv("lomap_scaling/output/lomap_druglikes_1.csv", names=["nodes", "time"])
-lomap_druglike_run1["Method"] = "LOMAP - Drug-like"
-# lomap_druglike_run2 = pd.read_csv("lomap_scaling/output/lomap_druglikes_2.csv", names=["nodes", "time"])
-# lomap_druglike_run2["Method"] = "LOMAP - Drug-like"
-# lomap_druglike_run3 = pd.read_csv("lomap_scaling/output/lomap_druglikes_3.csv", names=["nodes", "time"])
-# lomap_druglike_run3["Method"] = "LOMAP - Drug-like"
+lomap_druglike_light = pd.read_csv("lomap_scaling/output_cluster/lomap_druglike_light_1.csv", names=["nodes", "time"])
+lomap_druglike_light["Method"] = "LOMAP - Druglike light"
 
-lomap_fragment_run1 = pd.read_csv("lomap_scaling/output/lomap_fragment_1.csv", names=["nodes", "time"])
-lomap_fragment_run1["Method"] = "LOMAP - Fragments"
-# lomap_fragment_run2 = pd.read_csv("lomap_scaling/output/lomap_fragment_2.csv", names=["nodes", "time"])
-# lomap_fragment_run2["Method"] = "LOMAP - Fragments"
-# lomap_fragment_run3 = pd.read_csv("lomap_scaling/output/lomap_fragment_3.csv", names=["nodes", "time"])
-# lomap_fragment_run3["Method"] = "LOMAP - Fragments"
+lomap_druglike_heavy = pd.read_csv("lomap_scaling/output_cluster/lomap_druglike_heavy_1.csv", names=["nodes", "time"])
+lomap_druglike_heavy["Method"] = "LOMAP - Druglike heavy"
 
-#tmp for unfinished runs:
-df = pd.concat([diffnet_run1, diffnet_run2, diffnet_run3, 
-				lomap_druglike_run1,
-				lomap_fragment_run1, 
+lomap_bulky = pd.read_csv("lomap_scaling/output_cluster/lomap_bulky_1.csv", names=["nodes", "time"])
+lomap_bulky["Method"] = "LOMAP - bulky"
+
+lomap_fragments = pd.read_csv("lomap_scaling/output_cluster/lomap_fragment_1.csv", names=["nodes", "time"])
+lomap_fragments["Method"] = "LOMAP - fragments"
+
+
+df = pd.concat([
+				diffnet_run1,
+				lomap_druglike_light,
+				lomap_druglike_heavy,
+				lomap_bulky,
+				lomap_fragments
 				])
-
-
-
-# df = pd.concat([diffnet_run1, diffnet_run2, diffnet_run3, 
-# 				lomap_druglike_run1, lomap_druglike_run2, lomap_druglike_run3,
-# 				lomap_fragment_run1, lomap_fragment_run2, lomap_fragment_run3
-# 				])
 
 
 df["time_mins"] = df["time"] / 60

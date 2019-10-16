@@ -1,6 +1,6 @@
 #### Repository for benchmarking DiffNet vs. LOMAP network generation
 
-- diffnet_loop_COX.py loops Diffnet over n nodes
+- diffnet_loop_benchmark.py loops Diffnet over n nodes
 
 - lomap_scaling/lomap_*.py loops LOMAP over n nodes
 - plot_performances.py plots each model's performance over time

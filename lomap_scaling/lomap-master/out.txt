@@ -1,0 +1,11 @@
+#ID	FileName
+0	1,3,7-trimethylnaphthalene.mol2
+1	1-butyl-4-methylbenzene.mol2
+2	2,6-dimethylnaphthalene.mol2
+3	2-methyl-6-propylnaphthalene.mol2
+4	2-methylnaphthalene.mol2
+5	2-naftanol.mol2
+6	chlorophenyl.sdf
+7	methylcyclohexane.mol2
+8	toluene.mol2
+9	toluyl.sdf
